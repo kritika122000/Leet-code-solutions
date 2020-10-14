@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> partitionLabels(string S) {
+        vector<int> o;
+        int i=0, n=S.size();
+        while(i < n) {
+            int l = i;
+            int r = S.rfind(S[i]);
+            while(i<r) {
+                i++;
+                int t = S.rfind(S[i]);
+                if(t > r) r = t;
+            }
+            o.push_back(r-l+1);
+            i++;
+        }
+        return o;
+
+    }
+};
