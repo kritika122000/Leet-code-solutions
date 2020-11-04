@@ -1,0 +1,18 @@
+class Solution {
+public:
+    vector<int> addToArrayForm(vector<int>& A, int K) {
+        int c = K;
+        int i = A.size()-1;
+        while(c && i >= 0){
+            c += A[i];
+            A[i--] = c%10;
+            c /= 10;
+        }
+        while(c){
+            A.insert(A.begin(), c%10);
+            c /= 10;
+        }
+        return A;
+    
+    }
+};
