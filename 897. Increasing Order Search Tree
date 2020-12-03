@@ -1,0 +1,25 @@
+class Solution {
+public:
+    TreeNode* head = nullptr;
+    void insert(int val) {
+        if(head == nullptr) {
+            head = new TreeNode(val);
+            return;
+        }
+        TreeNode* temp = head;
+        while(temp->right != nullptr)
+            temp = temp->right;
+        temp->right = new TreeNode(val);
+    }
+    void inorder(TreeNode* root) {
+        if(root == nullptr)
+            return;
+        inorder(root->left);
+        insert(root->val);
+        inorder(root->right);
+    }
+    TreeNode* increasingBST(TreeNode* root) {
+        inorder(root);
+        return head;
+    }
+};
