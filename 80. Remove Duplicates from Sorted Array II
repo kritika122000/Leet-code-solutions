@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int i =0;//starting from 0
+        for(auto element : nums){//iterating on the vector
+            if(i == 0|| i==1 || element != nums[i-2])//when having 1 or 2  element the placing that number i vector and if the current element is not same to the last second element then also place that into the vector
+                nums[i++] = element;// afer placing the element in the vector increment it
+        }
+        return i;
+    }
+    
+};
