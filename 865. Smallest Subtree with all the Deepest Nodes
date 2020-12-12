@@ -1,0 +1,35 @@
+class Solution {
+    int maxdepth = 0;
+    TreeNode*helper(TreeNode* root , int& depth){
+        if(root== NULL)return NULL;
+        
+        depth++;
+        //condition for leaf node
+        if(root->left == NULL && root->right == NULL){
+            return root;
+        }
+        int leftdepth = depth;
+        TreeNode* left = helper(root->left, leftdepth);
+        
+        int rightdepth = depth;
+        TreeNode* right = helper(root->right , rightdepth);
+        
+        if(leftdepth == rightdepth){
+            depth = leftdepth;
+            return root;
+
+        }
+        if(rightdepth > leftdepth){
+            depth = rightdepth;
+            return right;
+        }else{
+          depth = leftdepth;
+            return left;
+        }
+    }
+public:
+    TreeNode* subtreeWithAllDeepest(TreeNode* root) {
+        int depth = 0;
+        return helper(root, depth);
+    }
+};
