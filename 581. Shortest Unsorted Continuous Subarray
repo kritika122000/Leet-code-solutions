@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int findUnsortedSubarray(vector<int>& nums) {
+        const int n = nums.size();
+        
+        vector backup(nums);
+        sort(backup.begin(), backup.end());
+       int l = 0, r = n-1;
+        while(l < n && backup[l]==nums[l]) l++;
+        while(r >=l && backup[r]==nums[r]) r--;
+        return r - l + 1;
+    }
+};
