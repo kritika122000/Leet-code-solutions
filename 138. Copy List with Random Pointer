@@ -1,0 +1,30 @@
+class Node {
+public:
+    int val;
+    Node* next;
+    Node* random;
+    
+    Node(int _val) {
+        val = _val;
+        next = NULL;
+        random = NULL;
+    }
+};
+*/
+
+class Solution {
+public:
+    Node* copyRandomList(Node* head) {
+        map<Node *,Node *> check;
+        Node *temp = head;
+        while(head!=NULL){
+            check[head]=new Node(head->val);
+            head=head->next;
+        }
+        for(auto i:check){
+            i.second->next=check[i.first->next];
+            i.second->random = check[i.first->random];
+        }
+        return check[temp];
+    }
+};
